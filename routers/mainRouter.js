@@ -10,7 +10,7 @@ router.post('/login', (req, res, next) => {
   res.render('response', { title: 'Simple express app', email, password })
 })
 // визначимо роутер about
-router.get('/', (req, res) => {
+router.get('/users', (req, res) => {
   res.send('About')
 })
 
