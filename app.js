@@ -28,7 +28,7 @@ app.get('/users', async (req, res) => {
   } catch (error) {
     console.log(error)
   }
-  res.send('App is created')
+
   console.log(req)
 })
 app.listen(3000, () => {
