@@ -18,9 +18,9 @@ router.post('/app/users', async (req, res) => {
       await fs.readFile('./data/listOfContacts.json'),
     )
     const addUser = {
-      name: 'Selwe',
-      email: 'sans@magnis.org',
-      phone: '+38094563374',
+      name,
+      email,
+      phone,
       id: req.id,
     }
     userNumbers.push(addUser)
