@@ -16,19 +16,19 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
+app.use(cors())
 app.use('/', router)
 app.post('/app/users/list', async (req, res) => {
-  console.log(req.body)
   try {
     const { name, email, phone } = req.body
     const userNumbers = JSON.parse(
       await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
     )
     const addUser = {
-      id: req.uuid(),
       name,
       email,
       phone,
+      id: uuid(),
     }
     userNumbers.push(addUser)
     await fs.writeFile('./data/listOfContacts.js', JSON.stringify(userNumbers))
