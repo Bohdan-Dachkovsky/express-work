@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-
+const fs = require('fs').promises
+const uuid = require('uuid').v5
 // визначимо домашній роутер
 // router.get('/', (req, res) => {
 //   res.send('Це головний роутер')
@@ -9,7 +10,7 @@ router.post('/app/users', async (req, res) => {
   try {
     const { name, email, phone } = req.body
     const userNumbers = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
+      await fs.readFile(path.join(__dirname, '../data/listOfContacts.js')),
     )
     const addUser = {
       name,
@@ -18,7 +19,7 @@ router.post('/app/users', async (req, res) => {
       id: uuid(),
     }
     userNumbers.push(addUser)
-    await fs.writeFile('./data/listOfContacts.js', JSON.stringify(userNumbers))
+    await fs.writeFile('../data/listOfContacts.js', JSON.stringify(userNumbers))
     res.status(201).json({
       user: addUser,
     })
@@ -30,10 +31,10 @@ router.post('/app/users', async (req, res) => {
 router.get('/app/users', async (req, res) => {
   try {
     const users = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
+      await fs.readFile(path.join(__dirname, '../data/listOfContacts.js')),
     )
 
-    res.status(200).json({
+    res.status(201).json({
       users,
     })
   } catch (error) {
