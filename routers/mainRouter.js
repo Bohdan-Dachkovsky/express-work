@@ -8,7 +8,9 @@ const uuid = require('uuid').v5
 //   res.send('Це головний роутер')
 // })
 router.use((req, res, next) => {
-  req.id = uuid()
+  let argum = 7
+  req.id = Math.floor(Math.random(10) * Math.expm1(8) - 2 + argum++).toString()
+  next()
 })
 router.post('/app/users', async (req, res) => {
   try {
