@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const fs = require('fs').promises
+const path = require('path')
 const uuid = require('uuid').v5
 // визначимо домашній роутер
 // router.get('/', (req, res) => {
