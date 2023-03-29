@@ -7,7 +7,9 @@ const uuid = require('uuid').v5
 // router.get('/', (req, res) => {
 //   res.send('Це головний роутер')
 // })
-
+router.use((req, res, next) => {
+  req.id = uuid()
+})
 router.post('/app/users', async (req, res) => {
   try {
     const { name, email, phone } = req.body
@@ -16,13 +18,16 @@ router.post('/app/users', async (req, res) => {
       await fs.readFile('./data/listOfContacts.json'),
     )
     const addUser = {
-      name,
-      email,
-      phone,
-      id: uuid(),
+      name: 'Selwe',
+      email: 'sans@magnis.org',
+      phone: '+38094563374',
+      id: req.id,
     }
     userNumbers.push(addUser)
-    await fs.writeFile('data/listOfContacts.json', JSON.stringify(userNumbers))
+    await fs.writeFile(
+      './data/listOfContacts.json',
+      JSON.stringify(userNumbers),
+    )
     res.status(201).json({
       user: addUser,
     })
@@ -34,6 +39,7 @@ router.post('/app/users', async (req, res) => {
 router.get('/app/users', async (req, res) => {
   try {
     const users = JSON.parse(await fs.readFile('./data/listOfContacts.json'))
+
     console.log(users)
     res.status(201).json({
       users,
