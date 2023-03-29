@@ -18,44 +18,8 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(cors())
 app.use('/', router)
-app.post('/app/users/list', async (req, res) => {
-  try {
-    const { name, email, phone } = req.body
-    const userNumbers = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
-    )
-    const addUser = {
-      name,
-      email,
-      phone,
-      id: uuid(),
-    }
-    userNumbers.push(addUser)
-    await fs.writeFile('./data/listOfContacts.js', JSON.stringify(userNumbers))
-    res.status(201).json({
-      user: addUser,
-    })
-  } catch (error) {
-    console.log(error)
-  }
-
-  console.log(req)
-})
-app.get('/app/users/list', async (req, res) => {
-  try {
-    const users = JSON.parse(
-      await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
-    )
-
-    res.status(200).json({
-      users,
-    })
-  } catch (error) {
-    console.log(error)
-  }
-
-  console.log(req)
-})
+app.post('/app/users', router)
+app.get('/app/users', router)
 app.listen(3000, () => {
   console.log('Server listening on port 3000!')
 })
