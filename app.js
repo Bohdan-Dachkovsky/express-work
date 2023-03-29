@@ -25,7 +25,7 @@ app.post('/app/users/list', async (req, res) => {
       await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
     )
     const addUser = {
-      id: uuid(),
+      id: req.uuid(),
       name,
       email,
       phone,
