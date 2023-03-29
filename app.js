@@ -16,8 +16,9 @@ app.use(cookieParser())
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
-app.use('/app', router)
-app.post('app/users/list', async (req, res) => {
+app.use('/', router)
+app.post('/app/users/list', async (req, res) => {
+  console.log(req.body)
   try {
     const { name, email, phone } = req.body
     const userNumbers = JSON.parse(
@@ -40,7 +41,7 @@ app.post('app/users/list', async (req, res) => {
 
   console.log(req)
 })
-app.get('app/users/list', async (req, res) => {
+app.get('/app/users/list', async (req, res) => {
   try {
     const users = JSON.parse(
       await fs.readFile(path.join(__dirname, 'data/listOfContacts.js')),
