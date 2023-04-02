@@ -4,6 +4,7 @@ const {
   createUserContacts,
   getContactsList,
   getContactsIndex,
+  deleteContactById,
   updVariables,
 } = require('../controllers/userControllers.js')
 const {
