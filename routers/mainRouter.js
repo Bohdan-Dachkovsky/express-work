@@ -10,7 +10,7 @@ const {
   generatorId,
   delNewArray,
   updNewArray,
-} = require('../middlewares/contactsMiddlewares.js')
+} = require('../middlewares/usersMiddleware.js')
 
 router.use(generatorId)
 router.use('/app/contacts/:id', delNewArray)

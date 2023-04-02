@@ -3,7 +3,6 @@ const { handleContactsValidator } = require('../utils/fileValidator.js')
 const uuid = require('uuid').v5
 exports.createUserContacts = async (req, res) => {
   try {
-    console.log(uuid())
     const { error, value } = handleContactsValidator(req.body)
     console.log(error, value)
     const { name, email, phone, id } = value
