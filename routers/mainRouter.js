@@ -8,15 +8,14 @@ const {
 } = require('../controllers/userControllers.js')
 const {
   generatorId,
-  updNewArray,
   delNewArray,
-} = require('../middlewares/userMiddlewares.js')
+  updNewArray,
+} = require('../middlewares/contactsMiddlewares.js')
 
 router.use(generatorId)
-router.use('/app/contacts/:id', updNewArray)
 router.use('/app/contacts/:id', delNewArray)
+router.use('/app/contacts/:id', updNewArray)
 router.post('/app/contacts', createUserContacts)
-
 router.get('/app/contacts', getContactsList)
 router.get('/app/contacts/:id', getContactsIndex)
 router.delete('/app/contacts/:id', deleteContactById)

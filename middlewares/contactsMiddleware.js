@@ -9,11 +9,10 @@ exports.delNewArray = async (req, res, next) => {
   try {
     const { error, value } = handleIndeIndentificatorVal(req.params)
     const { id } = value
+    if (error) return new IdError(403, error.details[0].message)
     const listContacts = JSON.parse(
       await fs.readFile('../data/listOfContacts.json'),
     )
-
-    if (error) return new IdError(403, error.details[0].message)
     const contactsGrouped = listContacts.find((element) => element.id !== id)
     if (!contactsGrouped) return res.status(404).json({ message: 'Not found' })
     req.contactsArr = contactsGrouped
