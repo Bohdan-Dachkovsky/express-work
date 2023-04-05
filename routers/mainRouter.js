@@ -13,7 +13,9 @@ const {
   updNewArray,
 } = require('../middlewares/usersMiddleware.js')
 
-router.use(generatorId, delNewArray, updNewArray)
+router.use(generatorId)
+router.use(delNewArray)
+router.use(updNewArray)
 router.use('/app/contacts/:id', delNewArray)
 router.use('/app/contacts/:id', updNewArray)
 router.post('/app/contacts', createUserContacts)
