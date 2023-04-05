@@ -5,7 +5,7 @@ exports.createUserContacts = async (req, res) => {
   try {
     const { error, value } = handleContactsValidator(req.body)
     const { name, email, phone, id } = value
-    console.log(id)
+
     if (error) return new IdError(403, error.details[0].message)
     const userNumbers = JSON.parse(
       await fs.readFile('./data/listOfContacts.json'),
@@ -33,7 +33,6 @@ exports.getContactsList = async (req, res) => {
     const listContacts = JSON.parse(
       await fs.readFile('./data/listOfContacts.json'),
     )
-
     res.status(201).json({
       listContacts,
     })
@@ -45,9 +44,8 @@ exports.getContactsList = async (req, res) => {
 }
 exports.getContactsIndex = async (req, res) => {
   try {
-    const { id } = req.params
-    const listContacts = JSON.parse(await fs.readFile('./data/contacts.json'))
-    const contactGrouped = listContacts.filter((element) => element.id === id)
+    const { contactGrouped } = req
+    console.log(contactGrouped)
     res.json(contactGrouped)
   } catch (error) {
     const err = new ErrorMessage()

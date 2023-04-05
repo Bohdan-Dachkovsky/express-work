@@ -13,7 +13,7 @@ exports.delNewArray = async (req, res, next) => {
 
     if (error) return new IdError(403, error.details[0].message)
     const listContacts = JSON.parse(
-      await fs.readFile('../data/listOfContacts.json'),
+      await fs.readFile('./data/listOfContacts.json'),
     )
     const contactsGrouped = listContacts.find(
       (element) => element.id !== id.toString(),
