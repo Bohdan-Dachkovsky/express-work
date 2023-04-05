@@ -1,0 +1,25 @@
+{
+  "name": "hw02-express",
+  "version": "1.0.0",
+  "description": "Build express and use merge",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "app.js nodemon",
+    "production": "node app.js &"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bohdan-Dachkovsky/hw02-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bohdan-Dachkovsky/hw02-express/issues"
+  },
+  "homepage": "https://github.com/Bohdan-Dachkovsky/hw02-express#readme",
+  "dependencies": {
+    "latest": "^0.2.0"
+  }
+}
