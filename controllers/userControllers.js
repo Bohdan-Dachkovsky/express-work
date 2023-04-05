@@ -4,22 +4,21 @@ const uuid = require('uuid').v5
 exports.createUserContacts = async (req, res) => {
   try {
     const { error, value } = handleContactsValidator(req.body)
-    console.log(error, value)
     const { name, email, phone, id } = value
     console.log(id)
     if (error) return new IdError(403, error.details[0].message)
     const userNumbers = JSON.parse(
-      await fs.readFile('../data/listOfContacts.json'),
+      await fs.readFile('./data/listOfContacts.json'),
     )
     const addUser = {
       name,
       email,
       phone,
-      id: id,
+      id: req.id,
     }
     userNumbers.push(addUser)
     await fs.writeFile(
-      '../data/listOfContacts.json',
+      './data/listOfContacts.json',
       JSON.stringify(userNumbers),
     )
     res.status(201).json({
@@ -32,7 +31,7 @@ exports.createUserContacts = async (req, res) => {
 exports.getContactsList = async (req, res) => {
   try {
     const listContacts = JSON.parse(
-      await fs.readFile('../data/listOfContacts.json'),
+      await fs.readFile('./data/listOfContacts.json'),
     )
 
     res.status(201).json({
@@ -47,7 +46,7 @@ exports.getContactsList = async (req, res) => {
 exports.getContactsIndex = async (req, res) => {
   try {
     const { id } = req.params
-    const listContacts = JSON.parse(await fs.readFile('../db/contacts.json'))
+    const listContacts = JSON.parse(await fs.readFile('./data/contacts.json'))
     const contactGrouped = listContacts.filter((element) => element.id === id)
     res.json(contactGrouped)
   } catch (error) {

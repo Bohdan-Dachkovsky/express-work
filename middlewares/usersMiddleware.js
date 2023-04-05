@@ -2,10 +2,8 @@ const { handleIndeIndentificatorVal } = require('../utils/fileValidator.js')
 const fs = require('fs').promises
 exports.generatorId = (req, res, next) => {
   let argum = 7
-  req.id = Math.floor(
-    Math.random(10) * (Math.expm1(8) - 2 + argum++),
-  ).toString()
-  console.log(id)
+  req.id = Math.floor(Math.random(10) * Math.expm1(8) - 2 + argum++).toString()
+  console.log(req.id)
   next()
 }
 exports.delNewArray = async (req, res, next) => {
