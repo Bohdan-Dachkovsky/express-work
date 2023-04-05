@@ -45,9 +45,12 @@ exports.getContactsList = async (req, res) => {
 exports.getContactsIndex = async (req, res) => {
   const { error, value } = handleContactsValidator(req.body)
   try {
-    const { contactGrouped } = value
-    console.log(contactGrouped)
-    res.json(contactGrouped)
+    const listContacts = JSON.parse(
+      await fs.readFile('./data/listOfContacts.json'),
+    )
+    const { id } = req.params
+    const findIdx = listContacts.find((el) => el.id === id)
+    res.json(findIdx)
   } catch (error) {
     const err = new ErrorMessage()
     console.log(err)
