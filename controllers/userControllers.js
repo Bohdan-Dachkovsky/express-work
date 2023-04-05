@@ -6,6 +6,7 @@ exports.createUserContacts = async (req, res) => {
     const { error, value } = handleContactsValidator(req.body)
     console.log(error, value)
     const { name, email, phone, id } = value
+    console.log(id)
     if (error) return new IdError(403, error.details[0].message)
     const userNumbers = JSON.parse(
       await fs.readFile('../data/listOfContacts.json'),
